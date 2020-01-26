@@ -18,10 +18,10 @@ int* decToBinary (int n) {
 
 // Randomly light up the 7-seg displays
 void randLights () {
+  // Generate a random 7 bit number to correspond to each 7-seg display
   int* rand_config = decToBinary(rand() % 255);
-  for (int i = 7; i >= 0; i--) printf("%d", rand_config[i]);
-  printf("\n");
 
+  // Read each bit and light up positive bits
   if (rand_config[0] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 127);
   else IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 0);
   if (rand_config[1] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
@@ -40,6 +40,91 @@ void randLights () {
   else IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 0);
 }
 
+// Light up 
+void patternLights (int pos) {
+  if (pos == 0) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 126);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 127);
+  }
+  else if (pos == 1) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 126);
+  }
+  else if (pos == 2) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 126);
+  }
+  else if (pos == 4) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 126);
+  }
+  else if (pos == 5) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 126);
+  }
+  else if (pos == 6) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 126);
+  }
+  else if (pos == 7) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 126);
+  }
+  else if (pos == 8) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 126);
+  }
+  else if (pos == 9) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 95);
+  }
+  else if (pos == 10) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 111);
+  }
+  else if (pos == 11) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 119);
+  }
+  else if (pos == 12) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 119);
+  }
+  else if (pos == 13) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 119);
+  }
+  else if (pos == 14) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 119);
+  }
+  else if (pos == 15) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 119);
+  }
+  else if (pos == 16) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 119);
+  }
+  else if (pos == 17) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 119);
+  }
+  else if (pos == 18) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 119);
+  }
+  else if (pos == 19) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 123);
+  }
+  else if (pos == 20) {
+    IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 125);
+  }
+}
+
 int main()
 {
   alt_u32 current_value;
@@ -50,6 +135,8 @@ int main()
   current_state=3;
   current_value=1;
   current_direction=0;
+  
+  int pos = 0;
 
   printf ("Program running (UART)...\n");
 
@@ -87,6 +174,11 @@ int main()
     
     // update lights
     if (current_state == 3) randLights();
+    if (current_state == 5) {
+      patternLights(pos);
+      if (pos == 20) pos = 0;
+      else pos++;
+    }
     IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE,current_value);
     
     // wait
