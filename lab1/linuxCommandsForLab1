@@ -1,0 +1,334 @@
+--------------------------------------------------------------------------------
+Lecture 1; Slide 56
+--------------------------------------------------------------------------------
+
+Add this line at the end of ~/.bashrc:
+source /usr/local/3rdparty/cad_setup_files/altera.bash
+
+Make changes:
+source ~/.bashrc
+
+Launch Quartus:
+quartus &
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 58
+--------------------------------------------------------------------------------
+
+Create project directory:
+mkdir -p CSCE313/lights
+
+Device name: EP4CE115F29C7
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 65
+--------------------------------------------------------------------------------
+
+Assignments | Import Assignments:
+/usr/local/3rdparty/csce611/CPU_support_files/DE2_115_pin_assignments.qsf
+
+File | New | Synopsys Design Constraint File:
+Content:
+create_clock -name CLOCK_50 -period 20 [get_ports CLOCK_50]
+derive_pll_clocks -create_base_clocks
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 67
+--------------------------------------------------------------------------------
+
+Content of lights.v:
+
+module
+lights (
+	input CLOCK_50,
+	input [3:0] KEY,
+	output [12:0] DRAM_ADDR,
+	output [1:0] DRAM_BA,
+	output DRAM_CAS_N,
+	output DRAM_CKE,
+	output DRAM_CS_N,
+	inout [31:0] DRAM_DQ,
+	output [3:0] DRAM_DQM,
+	output DRAM_RAS_N,
+	output DRAM_WE_N,
+	output DRAM_CLK
+);
+
+nios_system u0 (
+	.clk_clk                           (CLOCK_50),                           //                         clk.clk
+	.reset_reset_n                     (KEY[0]),                     //                       reset.reset_n
+	.new_sdram_controller_0_wire_addr  (DRAM_ADDR),  // new_sdram_controller_0_wire.addr
+	.new_sdram_controller_0_wire_ba    (DRAM_BA),    //                            .ba
+	.new_sdram_controller_0_wire_cas_n (DRAM_CAS_N), //                            .cas_n
+	.new_sdram_controller_0_wire_cke   (DRAM_CKE),   //                            .cke
+	.new_sdram_controller_0_wire_cs_n  (DRAM_CS_N),  //                            .cs_n
+	.new_sdram_controller_0_wire_dq    (DRAM_DQ),    //                            .dq
+	.new_sdram_controller_0_wire_dqm   (DRAM_DQM),   //                            .dqm
+	.new_sdram_controller_0_wire_ras_n (DRAM_RAS_N), //                            .ras_n
+	.new_sdram_controller_0_wire_we_n  (DRAM_WE_N),   //                            .we_n
+	.sdram_clk_clk                     (DRAM_CLK)
+);
+endmodule
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 72
+--------------------------------------------------------------------------------
+
+Create software directory:
+cd CSCE313/lights
+mkdir software
+cd software
+
+Create example hello_world.c:
+nios2-swexample-create --name=lights --sopc-file=../nios_system.sopcinfo --type=hello_world --cpu-name=nios2_gen2_0 --app-dir=lights --bsp-dir=lights_bsp
+
+cd lights
+./create-this-app
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 73
+--------------------------------------------------------------------------------
+
+Content of hello_world.c:
+
+#include <stdio.h>
+
+int main()
+{
+  double new_val = 3.0;
+  double val = 0;
+  double start = 2.0;
+  double temp;
+  int i=0,toggle=0;
+
+  while (val != new_val) {
+	val = new_val;					#insert breakpoint here
+    temp = start * (start + 1.0) * (start + 2.0);
+    if (!toggle)
+      new_val += 4.0 / temp;
+    else
+      new_val -= 4.0 / temp;
+    toggle = !toggle;
+    start = start + 2.0;
+    i++;
+  }
+
+  printf ("value is %0.8f\n",val);
+
+  return 0;
+}
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 74
+--------------------------------------------------------------------------------
+
+Compile the code:
+make
+
+Open GDB server in one terminal:
+nios2-gdb-server --tcpport 8888 --tcppersist
+
+One GDB in another terminal:
+nios2-elf-gdb lights.elf
+
+target remote localhost:8888
+load
+
+b hello_world.c:<line just under while loop>
+
+c
+p val (it should print 0)
+c
+p val (it should print 3)
+c
+p val (it should print 3.1667)
+c
+p val (it should print 3.1333)
+c
+clear ??
+b ??
+c
+p val (it should print 3.1416)
+p i (it should print 131072)
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 79
+--------------------------------------------------------------------------------
+
+Content of new lights.v:
+
+module
+lights
+(
+	input  CLOCK_50,
+	input  [  3:0 ] KEY,
+	output [ 12:0 ] DRAM_ADDR,
+	output [  1:0 ] DRAM_BA,
+	output DRAM_CAS_N,
+	output DRAM_CKE,
+	output DRAM_CS_N,
+	inout  [ 31:0 ] DRAM_DQ,
+	output [  3:0 ] DRAM_DQM,
+	output DRAM_RAS_N,
+	output DRAM_WE_N,
+	output DRAM_CLK,
+	output [ 17:0 ] LEDR,
+	output [  7:0 ] LEDG
+);
+
+nios_system u0
+(
+	.clk_clk                           ( CLOCK_50   ),		// clk.clk
+	.reset_reset_n                     ( KEY[0]     ),		// reset.reset_n
+	.new_sdram_controller_0_wire_addr  ( DRAM_ADDR  ),		// new_sdram_controller_0_wire.addr
+	.new_sdram_controller_0_wire_ba    ( DRAM_BA    ),		// .ba
+	.new_sdram_controller_0_wire_cas_n ( DRAM_CAS_N ),		// .cas_n
+	.new_sdram_controller_0_wire_cke   ( DRAM_CKE   ),		// .cke
+	.new_sdram_controller_0_wire_cs_n  ( DRAM_CS_N  ),		// .cs_n
+	.new_sdram_controller_0_wire_dq    ( DRAM_DQ    ),		// .dq
+	.new_sdram_controller_0_wire_dqm   ( DRAM_DQM   ),		// .dqm
+	.new_sdram_controller_0_wire_ras_n ( DRAM_RAS_N ),		// .ras_n
+	.new_sdram_controller_0_wire_we_n  ( DRAM_WE_N  ),		// .we_n
+	.sdram_clk_clk                     ( DRAM_CLK ),
+	.keys_export                       ( KEY[ 3:1 ] ),		// keys.export
+	.leds_export                       ( { LEDR, LEDG } )	// leds.export
+);
+endmodule
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 80
+--------------------------------------------------------------------------------
+
+Download new design file on the FPGA:
+cd CSCE313/lights
+nios2-configure-sof output_files/lights.sof
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 81
+--------------------------------------------------------------------------------
+
+Kill previously running GDB:
+pkill -9 .*gdb.*
+
+Go to software directory:
+cd CSCE313/lights
+cd software
+
+Update BSP for the new hardware:
+cd lights_bsp
+nios2-bsp-generate-files --settings="settings.bsp" --bsp-dir=.
+nios2-bsp-editor
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 83
+--------------------------------------------------------------------------------
+
+Update software:
+cd CSCE313/lights
+cd software/lights
+
+Content of new hello_world.c:
+Add to the header files:
+
+#include <stdio.h>
+#include <unistd.h>
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+#include "alt_types.h"
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 84
+--------------------------------------------------------------------------------
+
+Content of new main() code:
+
+alt_u8  current_direction;
+alt_u32 current_state;
+alt_u32 current_value;
+alt_u32 keys;
+
+current_state     = 3;
+current_value     = 1;
+current_direction = 0;
+
+printf( "Program running ( UART )...\n" );
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 85
+--------------------------------------------------------------------------------
+
+Content of new main() code:
+
+while ( 1 )
+{
+	// read the current state of the keys
+	keys = IORD_ALTERA_AVALON_PIO_DATA( KEYS_BASE );
+
+	// switch speed if necessary
+	if ( ( keys != 7 ) && ( keys != current_state ) )
+	{
+	    if ( keys == 3 )
+		{
+			printf ( "speed set to 250 ms\n" );
+		}
+	    else if ( keys == 5 )
+		{
+			printf ( "speed set to 150 ms\n" );
+		}
+		else if ( keys == 6 )
+		{
+			printf ( "speed set to 50 ms\n" );
+		}
+
+		current_state = keys;
+	}
+
+	// switch direction if necessary
+	if ( ( current_direction == 0 ) && ( current_value == ( 1 << 25 ) ) )
+	{
+		current_direction = 1;
+	}
+	else if ( ( current_direction == 1 ) && ( current_value == 1 ) )
+	{
+		current_direction = 0;
+	}
+	// move light
+	else if ( current_direction == 0 )
+	{
+		current_value = current_value << 1;
+	}
+	else
+	{
+		current_value = current_value >> 1;
+	}
+
+	// update lights
+	IOWR_ALTERA_AVALON_PIO_DATA( LEDS_BASE, current_value );
+
+	// wait
+	if ( current_state == 3 )
+	{
+	 	usleep( 250000 );
+	}
+	else if (current_state==5)
+	{
+		usleep( 125000 );
+	}
+	else
+	{
+		usleep( 50000 );
+	}
+}
+
+--------------------------------------------------------------------------------
+Lecture 1; Slide 86
+--------------------------------------------------------------------------------
+
+Recompile the code:
+make
+
+Open a new terminal:
+nios2-terminal
+
+In another terminal:
+nios2-download -g lights.elf
