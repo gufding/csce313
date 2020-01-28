@@ -1,5 +1,5 @@
 Flow report for lights
-Wed Jan 22 16:08:26 2020
+Tue Jan 28 17:48:02 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Wed Jan 22 16:08:26 2020           ;
+; Flow Status                        ; Successful - Tue Jan 28 17:48:02 2020           ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                      ; lights                                          ;
 ; Top-level Entity Name              ; lights                                          ;
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/22/2020 16:06:22 ;
+; Start date & time ; 01/28/2020 17:46:05 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lights              ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 26830024583548.157972718214383         ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 26830024583257.158025156504684         ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation ;
@@ -96,12 +96,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:58     ; 1.0                     ; 1232 MB             ; 00:01:47                           ;
-; Fitter               ; 00:00:42     ; 1.1                     ; 1822 MB             ; 00:00:51                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 871 MB              ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.2                     ; 1008 MB             ; 00:00:04                           ;
-; EDA Netlist Writer   ; 00:00:07     ; 1.0                     ; 1162 MB             ; 00:00:05                           ;
-; Total                ; 00:01:57     ; --                      ; --                  ; 00:02:51                           ;
+; Analysis & Synthesis ; 00:00:59     ; 1.0                     ; 1235 MB             ; 00:01:56                           ;
+; Fitter               ; 00:00:36     ; 1.1                     ; 1821 MB             ; 00:00:53                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 873 MB              ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.2                     ; 1012 MB             ; 00:00:05                           ;
+; EDA Netlist Writer   ; 00:00:06     ; 1.0                     ; 1163 MB             ; 00:00:05                           ;
+; Total                ; 00:01:50     ; --                      ; --                  ; 00:03:03                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -110,11 +110,11 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+----------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name        ; OS Version ; Processor type ;
 +----------------------+------------------+----------------+------------+----------------+
-; Analysis & Synthesis ; cocsce-l3d22-07  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
-; Fitter               ; cocsce-l3d22-07  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
-; Assembler            ; cocsce-l3d22-07  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
-; Timing Analyzer      ; cocsce-l3d22-07  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
-; EDA Netlist Writer   ; cocsce-l3d22-07  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
+; Analysis & Synthesis ; cocsce-l3d22-08  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
+; Fitter               ; cocsce-l3d22-08  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
+; Assembler            ; cocsce-l3d22-08  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
+; Timing Analyzer      ; cocsce-l3d22-08  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
+; EDA Netlist Writer   ; cocsce-l3d22-08  ; Ubuntu 16.04.6 ; 16         ; x86_64         ;
 +----------------------+------------------+----------------+------------+----------------+
 
 

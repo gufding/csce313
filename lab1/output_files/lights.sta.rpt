@@ -1,5 +1,5 @@
 Timing Analyzer report for lights
-Wed Jan 22 16:08:18 2020
+Tue Jan 28 17:47:55 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -131,27 +131,27 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.22        ;
+; Average used               ; 1.25        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  11.8%      ;
-;     Processor 3            ;   5.3%      ;
-;     Processor 4            ;   5.2%      ;
+;     Processor 2            ;  13.9%      ;
+;     Processor 3            ;   5.4%      ;
+;     Processor 4            ;   5.3%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; SDC File List                                                                                                                               ;
-+---------------------------------------------------------------------------------------------------------+--------+--------------------------+
-; SDC File Path                                                                                           ; Status ; Read at                  ;
-+---------------------------------------------------------------------------------------------------------+--------+--------------------------+
-; SDC1.sdc                                                                                                ; OK     ; Wed Jan 22 16:08:15 2020 ;
-; /acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Wed Jan 22 16:08:15 2020 ;
-; /acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_reset_controller.sdc                  ; OK     ; Wed Jan 22 16:08:15 2020 ;
-; /acct/mhensler/csce313/lights/db/ip/nios_system/submodules/nios_system_nios2_gen2_0_cpu.sdc             ; OK     ; Wed Jan 22 16:08:15 2020 ;
-+---------------------------------------------------------------------------------------------------------+--------+--------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; SDC File List                                                                                                                           ;
++-----------------------------------------------------------------------------------------------------+--------+--------------------------+
+; SDC File Path                                                                                       ; Status ; Read at                  ;
++-----------------------------------------------------------------------------------------------------+--------+--------------------------+
+; SDC1.sdc                                                                                            ; OK     ; Tue Jan 28 17:47:52 2020 ;
+; /acct/zwells/csce313/lab1/db/ip/nios_system/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Tue Jan 28 17:47:52 2020 ;
+; /acct/zwells/csce313/lab1/db/ip/nios_system/submodules/altera_reset_controller.sdc                  ; OK     ; Tue Jan 28 17:47:52 2020 ;
+; /acct/zwells/csce313/lab1/db/ip/nios_system/submodules/nios_system_nios2_gen2_0_cpu.sdc             ; OK     ; Tue Jan 28 17:47:52 2020 ;
++-----------------------------------------------------------------------------------------------------+--------+--------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -5276,7 +5276,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Wed Jan 22 16:08:12 2020
+    Info: Processing started: Tue Jan 28 17:47:50 2020
 Info: Command: quartus_sta lights -c lights
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -5320,9 +5320,12 @@ Info (332104): Reading SDC File: 'SDC1.sdc'
 Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|inclk[0]} -duty_cycle 50.00 -name {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|clk[0]} {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|clk[0]}
     Info (332110): create_generated_clock -source {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|inclk[0]} -phase -54.00 -duty_cycle 50.00 -name {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|clk[1]} {u0|sys_sdram_pll_0|sys_pll|PLL_for_DE_Series_Boards|auto_generated|pll1|clk[1]}
-Info (332104): Reading SDC File: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_avalon_st_handshake_clock_crosser.sdc'
-Info (332104): Reading SDC File: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_reset_controller.sdc'
-Info (332104): Reading SDC File: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/nios_system_nios2_gen2_0_cpu.sdc'
+Info (332104): Reading SDC File: '/acct/zwells/csce313/lab1/db/ip/nios_system/submodules/altera_avalon_st_handshake_clock_crosser.sdc'
+Info (332104): Reading SDC File: '/acct/zwells/csce313/lab1/db/ip/nios_system/submodules/altera_reset_controller.sdc'
+Info (332104): Reading SDC File: '/acct/zwells/csce313/lab1/db/ip/nios_system/submodules/nios_system_nios2_gen2_0_cpu.sdc'
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_avalon_st_handshake_clock_crosser.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/altera_reset_controller.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/acct/mhensler/csce313/lights/db/ip/nios_system/submodules/nios_system_nios2_gen2_0_cpu.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
     Critical Warning (332169): From altera_reserved_tck (Rise) to altera_reserved_tck (Rise) (setup and hold)
     Critical Warning (332169): From altera_reserved_tck (Rise) to altera_reserved_tck (Fall) (setup and hold)
@@ -5478,10 +5481,10 @@ Info (332114): Report Metastability: Found 20 synchronizer chains.
     Info (332114):   - Under typical conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 10.8
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 1008 megabytes
-    Info: Processing ended: Wed Jan 22 16:08:18 2020
-    Info: Elapsed time: 00:00:06
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 1012 megabytes
+    Info: Processing ended: Tue Jan 28 17:47:55 2020
+    Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 
 

@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 22, 2020 4:27:51 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1579728471019</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/acct/mhensler/csce313/lights/software/lights_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>Jan 28, 2020 5:58:04 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1580252284686</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>/acct/zwells/csce313/lab1/software/lights_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../nios_system.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>

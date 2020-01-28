@@ -6,16 +6,16 @@
 #include "alt_types.h"
 
 // macros for the basic numerical states of the 7seg displays. Listed in binary
-#define ZERO  0b0111111
-#define ONE   0b0000110
-#define TWO   0b1011011
-#define THREE 0b1001111
-#define FOUR  0b1100110
-#define FIVE  0b1101101
-#define SIX   0b1111101
-#define SEVEN 0b0000111
-#define EIGHT 0b1111111
-#define NINE  0b1101111
+#define ZERO  0b1000000
+#define ONE   0b1111001
+#define TWO   0b0100100
+#define THREE 0b0110000
+#define FOUR  0b0011001
+#define FIVE  0b0010010
+#define SIX   0b0000010
+#define SEVEN 0b1111000
+#define EIGHT 0b0000000
+#define NINE  0b0010000
 
 // Function that converts a decimal to a binary
 int* decToBinary (int n) {
@@ -34,6 +34,7 @@ int hexCount[ 8 ];
 void count( void )
 {
 	switch ( hexCount[ 0 ] )
+	{
 		case 0:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, ZERO );
@@ -75,11 +76,13 @@ void count( void )
 			hexCount[ 1 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, NINE );
             break;
-
+	}
+	
 	switch ( hexCount[ 1 ] )
+	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, ONE );
             break;
@@ -109,8 +112,10 @@ void count( void )
 			hexCount[ 2 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, NINE );
             break;
-
+	}
+	
 	switch ( hexCount[ 2 ] )
+	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, ZERO );
             break;
@@ -143,9 +148,12 @@ void count( void )
 			hexCount[ 3 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, NINE );
             break;
-
+	}
+	
 	switch ( hexCount[ 3 ] )
+	{
 		case 0:
+			
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, ZERO );
             break;
 		case 1:
@@ -177,9 +185,12 @@ void count( void )
 			hexCount[ 4 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, NINE );
             break;
-
+	}
+	
 	switch ( hexCount[ 4 ] )
+	{
 		case 0:
+			
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, ZERO );
             break;
 		case 1:
@@ -211,8 +222,10 @@ void count( void )
 			hexCount[ 5 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, NINE );
             break;
+	}
 
 	switch ( hexCount[ 5 ] )
+	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, ZERO );
             break;
@@ -245,8 +258,10 @@ void count( void )
 			hexCount[ 6 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, NINE );
             break;
+	}
 
 	switch ( hexCount[ 6 ] )
+	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, ZERO );
             break;
@@ -279,8 +294,10 @@ void count( void )
 			hexCount[ 7 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, NINE );
             break;
+	}
 
 	switch ( hexCount[ 7 ] )
+	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, ZERO );
             break;
@@ -311,7 +328,8 @@ void count( void )
 		case 9:
 			hexCount[ 7 ] = 0;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, NINE );
-            break;
+			break;
+	}
 }
 
 // Randomly light up the 7-seg displays
