@@ -30,7 +30,7 @@ int* decToBinary (int n) {
 
 // storage for the present state in the hex display count
 int hexCount[ 8 ];
-
+// counting function for the hex disylays
 void count( void )
 {
 	switch ( hexCount[ 0 ] )
