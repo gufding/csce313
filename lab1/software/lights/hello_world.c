@@ -17,6 +17,17 @@
 #define EIGHT 0b0000000
 #define NINE  0b0010000
 
+void clearDisplays () {
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, 127);
+	IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, 127);
+}
+
 // Function that converts a decimal to a binary
 int* decToBinary (int n) {
 	static int binarr[7];
@@ -38,43 +49,43 @@ void count( void )
 		case 0:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, ONE );
-            break;
+			break;
 		case 2:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, TWO );
-            break;
+			break;
 		case 3:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, THREE );
-            break;
+			break;
 		case 4:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, SIX );
-            break;
+			break;
 		case 7:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			hexCount[ 0 ]++;
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX0_BASE, NINE );
-            break;
+			break;
 		case 10:
 			hexCount[ 0 ] = 0;
 			hexCount[ 1 ]++;
@@ -88,67 +99,66 @@ void count( void )
 			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX1_BASE, NINE );
-            break;
+			break;
 		case 10:
 			hexCount[ 1 ] = 0;
 			hexCount[ 2 ]++;
 			break;
-
 	}
 	
 	switch ( hexCount[ 2 ] )
 	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, EIGHT );
-   			break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX2_BASE, NINE );
 			break;
@@ -161,33 +171,32 @@ void count( void )
 	switch ( hexCount[ 3 ] )
 	{
 		case 0:
-			
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX3_BASE, NINE );
 			break;
@@ -201,31 +210,31 @@ void count( void )
 	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX4_BASE, NINE );
 			break;
@@ -239,31 +248,31 @@ void count( void )
 	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX5_BASE, NINE );
 			break;
@@ -277,31 +286,31 @@ void count( void )
 	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX6_BASE, NINE );
 			break;
@@ -315,31 +324,31 @@ void count( void )
 	{
 		case 0:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, ZERO );
-            break;
+			break;
 		case 1:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, ONE );
-            break;
+			break;
 		case 2:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, TWO );
-            break;
+			break;
 		case 3:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, THREE );
-            break;
+			break;
 		case 4:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, FOUR );
-            break;
+			break;
 		case 5:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, FIVE );
-            break;
+			break;
 		case 6:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, SIX );
-            break;
+			break;
 		case 7:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, SEVEN );
-            break;
+			break;
 		case 8:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, EIGHT );
-            break;
+			break;
 		case 9:
 			IOWR_ALTERA_AVALON_PIO_DATA( HEX7_BASE, NINE );
 			break;
@@ -354,36 +363,21 @@ void randLights () {
 	// Generate a random 7 bit number to correspond to each 7-seg display
 	int* rand_config = decToBinary(rand() % 255);
 
-  // Read each bit and light up positive bits
-	if (rand_config[0] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 0);
-	if (rand_config[1] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 0);
-	if (rand_config[2] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 0);
-	if (rand_config[3] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 0);
-	if (rand_config[4] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 0);
-	if (rand_config[5] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 0);
-	if (rand_config[6] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 0);
-	if (rand_config[7] == 0) IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 127);
-	else IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 0);
+	// Read each bit and light up positive bits
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, rand()%127);
+	IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, rand()%127);
 }
 
 // Light up
 void patternLights (int pos) {
 	if (pos == 0) {
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 126);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
-	IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 127);
+		IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 126);
 	}
 	else if (pos == 1) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 127);
@@ -393,67 +387,67 @@ void patternLights (int pos) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 126);
 	}
-	else if (pos == 4) {
+	else if (pos == 3) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 126);
 	}
-	else if (pos == 5) {
+	else if (pos == 4) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 126);
 	}
-	else if (pos == 6) {
+	else if (pos == 5) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 126);
 	}
-	else if (pos == 7) {
+	else if (pos == 6) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
 	    IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 126);
 	}
-	else if (pos == 8) {
+	else if (pos == 7) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 126);
 	}
-	else if (pos == 9) {
+	else if (pos == 8) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 95);
 	}
-	else if (pos == 10) {
+	else if (pos == 9) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 111);
 	}
-	else if (pos == 11) {
+	else if (pos == 10) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 119);
 	}
-	else if (pos == 12) {
+	else if (pos == 11) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX7_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 119);
 	}
-	else if (pos == 13) {
+	else if (pos == 12) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX6_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 119);
 	}
-	else if (pos == 14) {
+	else if (pos == 13) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX5_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 119);
 	}
-	else if (pos == 15) {
+	else if (pos == 14) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX4_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 119);
 	}
-	else if (pos == 16) {
+	else if (pos == 15) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX3_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 119);
 	}
-	else if (pos == 17) {
+	else if (pos == 16) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 119);
 	}
-	else if (pos == 18) {
+	else if (pos == 17) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, 127);
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 119);
 	}
-	else if (pos == 19) {
+	else if (pos == 18) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 123);
 	}
-	else if (pos == 20) {
+	else if (pos == 19) {
 		IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, 125);
 	}
 }
@@ -480,12 +474,15 @@ int main()
 		// switch speed if necessary
 		if ((keys != 7) && (keys != current_state)) {
 		if (keys == 3) {  // key 3, 250 ms, rand 7-seg config
+			clearDisplays();
 			printf ("speed set to 250 ms\n");
 		}
 		else if (keys == 5) {  // key 2
+			clearDisplays();
 			printf ("speed set to 150 ms\n");
 		}
 		else if (keys == 6) {  // key 1
+			clearDisplays();
 			printf ("speed set to 50 ms\n");
 			for ( int i = 0; i < 9; i++ ) hexCount[ i ] = 0;
 		}
@@ -510,7 +507,7 @@ int main()
 		if (current_state == 3) randLights();
 		if (current_state == 5) {
 			patternLights(pos);
-			if (pos == 20) pos = 0;
+			if (pos == 19) pos = 0;
 			else pos++;
 		}
 		if (current_state == 6) count( );
