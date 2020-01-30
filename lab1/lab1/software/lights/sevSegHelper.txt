@@ -1,0 +1,9 @@
+code ---> display
+121 ---> 1
+2 ---> 6
+120 ---> 7
+
+111 ---> bottom left light
+119 ---> bottom light
+123 ---> bottom right light
+125 ---> top right light
