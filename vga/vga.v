@@ -14,7 +14,7 @@ vga (
 	output DRAM_WE_N,
 	output DRAM_CLK,
 	
-	input [15:0] SRAM_DQ,
+	inout [15:0] SRAM_DQ,
 	output [19:0] SRAM_ADDR,
 	output SRAM_UB_N,
 	output SRAM_LB_N,
@@ -33,20 +33,20 @@ vga (
 );
 
 nios_system u0 (
-	.clk_clk                           (CLOCK_50),                           //                         clk.clk
-	.reset_reset_n                     (KEY[0]),                     //                       reset.reset_n
-	.new_sdram_controller_0_wire_addr  (DRAM_ADDR),  // new_sdram_controller_0_wire.addr
-	.new_sdram_controller_0_wire_ba    (DRAM_BA),    //                            .ba
-	.new_sdram_controller_0_wire_cas_n (DRAM_CAS_N), //                            .cas_n
-	.new_sdram_controller_0_wire_cke   (DRAM_CKE),   //                            .cke
-	.new_sdram_controller_0_wire_cs_n  (DRAM_CS_N),  //                            .cs_n
-	.new_sdram_controller_0_wire_dq    (DRAM_DQ),    //                            .dq
-	.new_sdram_controller_0_wire_dqm   (DRAM_DQM),   //                            .dqm
-	.new_sdram_controller_0_wire_ras_n (DRAM_RAS_N), //                            .ras_n
-	.new_sdram_controller_0_wire_we_n  (DRAM_WE_N),   //                            .we_n
+	.clk_clk                           (CLOCK_50),
+	.reset_reset_n                     (KEY[0]),
+	.new_sdram_controller_0_wire_addr  (DRAM_ADDR),
+	.new_sdram_controller_0_wire_ba    (DRAM_BA),
+	.new_sdram_controller_0_wire_cas_n (DRAM_CAS_N),
+	.new_sdram_controller_0_wire_cke   (DRAM_CKE),
+	.new_sdram_controller_0_wire_cs_n  (DRAM_CS_N),
+	.new_sdram_controller_0_wire_dq    (DRAM_DQ),
+	.new_sdram_controller_0_wire_dqm   (DRAM_DQM),
+	.new_sdram_controller_0_wire_ras_n (DRAM_RAS_N),
+	.new_sdram_controller_0_wire_we_n  (DRAM_WE_N),
 	.sdram_clk_clk                     (DRAM_CLK),
 	
-	.sram_DQ (SRAM_DQ),
+	.sram_DQ   (SRAM_DQ),
 	.sram_ADDR (SRAM_ADDR),
 	.sram_UB_N (SRAM_UB_N),
 	.sram_LB_N (SRAM_LB_N),
@@ -54,13 +54,13 @@ nios_system u0 (
 	.sram_CE_N (SRAM_CE_N),
 	.sram_OE_N (SRAM_OE_N),
 	
-	.vga_CLK (VGA_CLK),
-	.vga_HS (VGA_HS),
-	.vga_VS (VGA_VS),
-	.vga_BLANK (VGA_BLANK_N),
-	.vga_SYNC (VGA_SYNC_N),
-	.vga_R (VGA_R),
-	.vga_G (VGA_G),
-	.vga_B (VGA_B)
+	.vga_CLK		(VGA_CLK),
+	.vga_HS		(VGA_HS),
+	.vga_VS		(VGA_VS),
+	.vga_BLANK	(VGA_BLANK_N),
+	.vga_SYNC 	(VGA_SYNC_N),
+	.vga_R 		(VGA_R),
+	.vga_G 		(VGA_G),
+	.vga_B 		(VGA_B)
 );					
 endmodule	

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'nios_system'
  * SOPC Builder design path: ../../nios_system.sopcinfo
  *
- * Generated: Sun Feb 09 17:58:41 EST 2020
+ * Generated: Mon Feb 10 21:28:12 EST 2020
  */
 
 /*
@@ -62,7 +62,7 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x10000820
+#define ALT_CPU_BREAK_ADDR 0x10202820
 #define ALT_CPU_CPU_ARCH_NIOS2_R1
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
@@ -103,7 +103,7 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x10000820
+#define NIOS2_BREAK_ADDR 0x10202820
 #define NIOS2_CPU_ARCH_NIOS2_R1
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
@@ -141,8 +141,13 @@
  *
  */
 
+#define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
 #define __ALTERA_NIOS2_GEN2
+#define __ALTERA_UP_AVALON_SRAM
+#define __ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA
+#define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
+#define __ALTERA_UP_AVALON_VIDEO_RGB_RESAMPLER
 
 
 /*
@@ -151,6 +156,7 @@
  */
 
 #define ALT_DEVICE_FAMILY "Cyclone IV E"
+#define ALT_ENHANCED_INTERRUPT_API_PRESENT
 #define ALT_IRQ_BASE NULL
 #define ALT_LOG_PORT "/dev/null"
 #define ALT_LOG_PORT_BASE 0x0
@@ -183,6 +189,24 @@
 #define ALT_MAX_FD 32
 #define ALT_SYS_CLK none
 #define ALT_TIMESTAMP_CLK none
+
+
+/*
+ * jtag_uart_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
+#define JTAG_UART_0_BASE 0x0
+#define JTAG_UART_0_IRQ 0
+#define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define JTAG_UART_0_NAME "/dev/jtag_uart_0"
+#define JTAG_UART_0_READ_DEPTH 64
+#define JTAG_UART_0_READ_THRESHOLD 8
+#define JTAG_UART_0_SPAN 8
+#define JTAG_UART_0_TYPE "altera_avalon_jtag_uart"
+#define JTAG_UART_0_WRITE_DEPTH 64
+#define JTAG_UART_0_WRITE_THRESHOLD 8
 
 
 /*
@@ -222,5 +246,75 @@
 #define SDRAM_CONTROLLER_0_T_RFC 70.0
 #define SDRAM_CONTROLLER_0_T_RP 20.0
 #define SDRAM_CONTROLLER_0_T_WR 14.0
+
+
+/*
+ * sram_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sram_0 altera_up_avalon_sram
+#define SRAM_0_BASE 0x10000000
+#define SRAM_0_IRQ -1
+#define SRAM_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SRAM_0_NAME "/dev/sram_0"
+#define SRAM_0_SPAN 2097152
+#define SRAM_0_TYPE "altera_up_avalon_sram"
+
+
+/*
+ * video_character_buffer_with_dma_0_avalon_char_buffer_slave configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_buffer_slave altera_up_avalon_video_character_buffer_with_dma
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_BASE 0x10200000
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_IRQ -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_buffer_slave"
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_SPAN 8192
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_TYPE "altera_up_avalon_video_character_buffer_with_dma"
+
+
+/*
+ * video_character_buffer_with_dma_0_avalon_char_control_slave configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_control_slave altera_up_avalon_video_character_buffer_with_dma
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x10203010
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_control_slave"
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_SPAN 8
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_TYPE "altera_up_avalon_video_character_buffer_with_dma"
+
+
+/*
+ * video_pixel_buffer_dma_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_pixel_buffer_dma_0 altera_up_avalon_video_pixel_buffer_dma
+#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x10203000
+#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ -1
+#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_PIXEL_BUFFER_DMA_0_NAME "/dev/video_pixel_buffer_dma_0"
+#define VIDEO_PIXEL_BUFFER_DMA_0_SPAN 16
+#define VIDEO_PIXEL_BUFFER_DMA_0_TYPE "altera_up_avalon_video_pixel_buffer_dma"
+
+
+/*
+ * video_rgb_resampler_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_rgb_resampler_0 altera_up_avalon_video_rgb_resampler
+#define VIDEO_RGB_RESAMPLER_0_BASE 0x10203018
+#define VIDEO_RGB_RESAMPLER_0_IRQ -1
+#define VIDEO_RGB_RESAMPLER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_RGB_RESAMPLER_0_NAME "/dev/video_rgb_resampler_0"
+#define VIDEO_RGB_RESAMPLER_0_SPAN 4
+#define VIDEO_RGB_RESAMPLER_0_TYPE "altera_up_avalon_video_rgb_resampler"
 
 #endif /* __SYSTEM_H_ */

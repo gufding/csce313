@@ -4,33 +4,33 @@
 
 `timescale 1 ps / 1 ps
 module nios_system (
-		input  wire        clk_clk,                                         //                                       clk.clk
-		output wire [12:0] new_sdram_controller_0_wire_addr,                //               new_sdram_controller_0_wire.addr
-		output wire [1:0]  new_sdram_controller_0_wire_ba,                  //                                          .ba
-		output wire        new_sdram_controller_0_wire_cas_n,               //                                          .cas_n
-		output wire        new_sdram_controller_0_wire_cke,                 //                                          .cke
-		output wire        new_sdram_controller_0_wire_cs_n,                //                                          .cs_n
-		inout  wire [31:0] new_sdram_controller_0_wire_dq,                  //                                          .dq
-		output wire [3:0]  new_sdram_controller_0_wire_dqm,                 //                                          .dqm
-		output wire        new_sdram_controller_0_wire_ras_n,               //                                          .ras_n
-		output wire        new_sdram_controller_0_wire_we_n,                //                                          .we_n
-		input  wire        reset_reset_n,                                   //                                     reset.reset_n
-		output wire        sdram_clk_clk,                                   //                                 sdram_clk.clk
-		inout  wire [15:0] sram_0_external_interface_DQ,                    //                 sram_0_external_interface.DQ
-		output wire [19:0] sram_0_external_interface_ADDR,                  //                                          .ADDR
-		output wire        sram_0_external_interface_LB_N,                  //                                          .LB_N
-		output wire        sram_0_external_interface_UB_N,                  //                                          .UB_N
-		output wire        sram_0_external_interface_CE_N,                  //                                          .CE_N
-		output wire        sram_0_external_interface_OE_N,                  //                                          .OE_N
-		output wire        sram_0_external_interface_WE_N,                  //                                          .WE_N
-		output wire        video_vga_controller_0_external_interface_CLK,   // video_vga_controller_0_external_interface.CLK
-		output wire        video_vga_controller_0_external_interface_HS,    //                                          .HS
-		output wire        video_vga_controller_0_external_interface_VS,    //                                          .VS
-		output wire        video_vga_controller_0_external_interface_BLANK, //                                          .BLANK
-		output wire        video_vga_controller_0_external_interface_SYNC,  //                                          .SYNC
-		output wire [7:0]  video_vga_controller_0_external_interface_R,     //                                          .R
-		output wire [7:0]  video_vga_controller_0_external_interface_G,     //                                          .G
-		output wire [7:0]  video_vga_controller_0_external_interface_B      //                                          .B
+		input  wire        clk_clk,                           //                         clk.clk
+		output wire [12:0] new_sdram_controller_0_wire_addr,  // new_sdram_controller_0_wire.addr
+		output wire [1:0]  new_sdram_controller_0_wire_ba,    //                            .ba
+		output wire        new_sdram_controller_0_wire_cas_n, //                            .cas_n
+		output wire        new_sdram_controller_0_wire_cke,   //                            .cke
+		output wire        new_sdram_controller_0_wire_cs_n,  //                            .cs_n
+		inout  wire [31:0] new_sdram_controller_0_wire_dq,    //                            .dq
+		output wire [3:0]  new_sdram_controller_0_wire_dqm,   //                            .dqm
+		output wire        new_sdram_controller_0_wire_ras_n, //                            .ras_n
+		output wire        new_sdram_controller_0_wire_we_n,  //                            .we_n
+		input  wire        reset_reset_n,                     //                       reset.reset_n
+		output wire        sdram_clk_clk,                     //                   sdram_clk.clk
+		inout  wire [15:0] sram_DQ,                           //                        sram.DQ
+		output wire [19:0] sram_ADDR,                         //                            .ADDR
+		output wire        sram_LB_N,                         //                            .LB_N
+		output wire        sram_UB_N,                         //                            .UB_N
+		output wire        sram_CE_N,                         //                            .CE_N
+		output wire        sram_OE_N,                         //                            .OE_N
+		output wire        sram_WE_N,                         //                            .WE_N
+		output wire        vga_CLK,                           //                         vga.CLK
+		output wire        vga_HS,                            //                            .HS
+		output wire        vga_VS,                            //                            .VS
+		output wire        vga_BLANK,                         //                            .BLANK
+		output wire        vga_SYNC,                          //                            .SYNC
+		output wire [7:0]  vga_R,                             //                            .R
+		output wire [7:0]  vga_G,                             //                            .G
+		output wire [7:0]  vga_B                              //                            .B
 	);
 
 	wire         video_alpha_blender_0_avalon_blended_source_valid;                                        // video_alpha_blender_0:output_valid -> video_dual_clock_buffer_0:stream_in_valid
@@ -58,8 +58,8 @@ module nios_system (
 	wire         video_rgb_resampler_0_avalon_rgb_source_ready;                                            // video_scaler_0:stream_in_ready -> video_rgb_resampler_0:stream_out_ready
 	wire         video_rgb_resampler_0_avalon_rgb_source_startofpacket;                                    // video_rgb_resampler_0:stream_out_startofpacket -> video_scaler_0:stream_in_startofpacket
 	wire         video_rgb_resampler_0_avalon_rgb_source_endofpacket;                                      // video_rgb_resampler_0:stream_out_endofpacket -> video_scaler_0:stream_in_endofpacket
-	wire         sys_sdram_pll_0_sys_clk_clk;                                                              // sys_sdram_pll_0:sys_clk_clk -> [irq_mapper:clk, mm_interconnect_0:sys_sdram_pll_0_sys_clk_clk, nios2_gen2_0:clk, rst_controller:clk]
-	wire         video_pll_0_vga_clk_clk;                                                                  // video_pll_0:vga_clk_clk -> [rst_controller_003:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
+	wire         sys_sdram_pll_0_sys_clk_clk;                                                              // sys_sdram_pll_0:sys_clk_clk -> [irq_mapper:clk, jtag_uart_0:clk, mm_interconnect_0:sys_sdram_pll_0_sys_clk_clk, nios2_gen2_0:clk, rst_controller:clk, rst_controller_001:clk]
+	wire         video_pll_0_vga_clk_clk;                                                                  // video_pll_0:vga_clk_clk -> [rst_controller_004:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest;                             // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest -> video_pixel_buffer_dma_0:master_waitrequest
 	wire  [31:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata;                                // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata -> video_pixel_buffer_dma_0:master_readdata
 	wire  [31:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_address;                                 // video_pixel_buffer_dma_0:master_address -> mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_address
@@ -108,6 +108,13 @@ module nios_system (
 	wire   [3:0] mm_interconnect_0_video_pixel_buffer_dma_0_avalon_control_slave_byteenable;               // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_control_slave_byteenable -> video_pixel_buffer_dma_0:slave_byteenable
 	wire         mm_interconnect_0_video_pixel_buffer_dma_0_avalon_control_slave_write;                    // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_control_slave_write -> video_pixel_buffer_dma_0:slave_write
 	wire  [31:0] mm_interconnect_0_video_pixel_buffer_dma_0_avalon_control_slave_writedata;                // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_control_slave_writedata -> video_pixel_buffer_dma_0:slave_writedata
+	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect;                               // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_chipselect -> jtag_uart_0:av_chipselect
+	wire  [31:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_readdata;                                 // jtag_uart_0:av_readdata -> mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_readdata
+	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest;                              // jtag_uart_0:av_waitrequest -> mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_waitrequest
+	wire   [0:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address;                                  // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_address -> jtag_uart_0:av_address
+	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;                                     // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_read -> jtag_uart_0:av_read_n
+	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write;                                    // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_write -> jtag_uart_0:av_write_n
+	wire  [31:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata;                                // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_writedata -> jtag_uart_0:av_writedata
 	wire  [31:0] mm_interconnect_0_video_rgb_resampler_0_avalon_rgb_slave_readdata;                        // video_rgb_resampler_0:slave_readdata -> mm_interconnect_0:video_rgb_resampler_0_avalon_rgb_slave_readdata
 	wire         mm_interconnect_0_video_rgb_resampler_0_avalon_rgb_slave_read;                            // mm_interconnect_0:video_rgb_resampler_0_avalon_rgb_slave_read -> video_rgb_resampler_0:slave_read
 	wire  [31:0] mm_interconnect_0_nios2_gen2_0_debug_mem_slave_readdata;                                  // nios2_gen2_0:debug_mem_slave_readdata -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_readdata
@@ -127,6 +134,7 @@ module nios_system (
 	wire         mm_interconnect_0_sdram_controller_0_s1_readdatavalid;                                    // sdram_controller_0:za_valid -> mm_interconnect_0:sdram_controller_0_s1_readdatavalid
 	wire         mm_interconnect_0_sdram_controller_0_s1_write;                                            // mm_interconnect_0:sdram_controller_0_s1_write -> sdram_controller_0:az_wr_n
 	wire  [31:0] mm_interconnect_0_sdram_controller_0_s1_writedata;                                        // mm_interconnect_0:sdram_controller_0_s1_writedata -> sdram_controller_0:az_data
+	wire         irq_mapper_receiver0_irq;                                                                 // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                                                     // irq_mapper:sender_irq -> nios2_gen2_0:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -139,18 +147,32 @@ module nios_system (
 	wire         avalon_st_adapter_out_0_ready;                                                            // video_alpha_blender_0:background_ready -> avalon_st_adapter:out_0_ready
 	wire         avalon_st_adapter_out_0_startofpacket;                                                    // avalon_st_adapter:out_0_startofpacket -> video_alpha_blender_0:background_startofpacket
 	wire         avalon_st_adapter_out_0_endofpacket;                                                      // avalon_st_adapter:out_0_endofpacket -> video_alpha_blender_0:background_endofpacket
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n]
-	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
-	wire         sys_sdram_pll_0_reset_source_reset;                                                       // sys_sdram_pll_0:reset_source_reset -> rst_controller:reset_in0
-	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:sdram_controller_0_reset_reset_bridge_in_reset_reset, sdram_controller_0:reset_n]
-	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [avalon_st_adapter:in_rst_0_reset, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, sram_0:reset, sys_sdram_pll_0:ref_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_pll_0:ref_reset_reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
-	wire         rst_controller_003_reset_out_reset;                                                       // rst_controller_003:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
-	wire         video_pll_0_reset_source_reset;                                                           // video_pll_0:reset_source_reset -> rst_controller_003:reset_in0
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [jtag_uart_0:rst_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset]
+	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n]
+	wire         rst_controller_001_reset_out_reset_req;                                                   // rst_controller_001:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
+	wire         sys_sdram_pll_0_reset_source_reset;                                                       // sys_sdram_pll_0:reset_source_reset -> rst_controller_001:reset_in0
+	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_controller_0_reset_reset_bridge_in_reset_reset, sdram_controller_0:reset_n]
+	wire         rst_controller_003_reset_out_reset;                                                       // rst_controller_003:reset_out -> [avalon_st_adapter:in_rst_0_reset, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, sram_0:reset, sys_sdram_pll_0:ref_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_pll_0:ref_reset_reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
+	wire         rst_controller_004_reset_out_reset;                                                       // rst_controller_004:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
+	wire         video_pll_0_reset_source_reset;                                                           // video_pll_0:reset_source_reset -> rst_controller_004:reset_in0
+
+	nios_system_jtag_uart_0 jtag_uart_0 (
+		.clk            (sys_sdram_pll_0_sys_clk_clk),                                 //               clk.clk
+		.rst_n          (~rst_controller_reset_out_reset),                             //             reset.reset_n
+		.av_chipselect  (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),  // avalon_jtag_slave.chipselect
+		.av_address     (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),     //                  .address
+		.av_read_n      (~mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),       //                  .read_n
+		.av_readdata    (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_readdata),    //                  .readdata
+		.av_write_n     (~mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),      //                  .write_n
+		.av_writedata   (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),   //                  .writedata
+		.av_waitrequest (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest), //                  .waitrequest
+		.av_irq         (irq_mapper_receiver0_irq)                                     //               irq.irq
+	);
 
 	nios_system_nios2_gen2_0 nios2_gen2_0 (
 		.clk                                 (sys_sdram_pll_0_sys_clk_clk),                                //                       clk.clk
-		.reset_n                             (~rst_controller_reset_out_reset),                            //                     reset.reset_n
-		.reset_req                           (rst_controller_reset_out_reset_req),                         //                          .reset_req
+		.reset_n                             (~rst_controller_001_reset_out_reset),                        //                     reset.reset_n
+		.reset_req                           (rst_controller_001_reset_out_reset_req),                     //                          .reset_req
 		.d_address                           (nios2_gen2_0_data_master_address),                           //               data_master.address
 		.d_byteenable                        (nios2_gen2_0_data_master_byteenable),                        //                          .byteenable
 		.d_read                              (nios2_gen2_0_data_master_read),                              //                          .read
@@ -180,7 +202,7 @@ module nios_system (
 
 	nios_system_sdram_controller_0 sdram_controller_0 (
 		.clk            (sdram_clk_clk),                                         //   clk.clk
-		.reset_n        (~rst_controller_001_reset_out_reset),                   // reset.reset_n
+		.reset_n        (~rst_controller_002_reset_out_reset),                   // reset.reset_n
 		.az_addr        (mm_interconnect_0_sdram_controller_0_s1_address),       //    s1.address
 		.az_be_n        (~mm_interconnect_0_sdram_controller_0_s1_byteenable),   //      .byteenable_n
 		.az_cs          (mm_interconnect_0_sdram_controller_0_s1_chipselect),    //      .chipselect
@@ -203,14 +225,14 @@ module nios_system (
 
 	nios_system_sram_0 sram_0 (
 		.clk           (clk_clk),                                                  //                clk.clk
-		.reset         (rst_controller_002_reset_out_reset),                       //              reset.reset
-		.SRAM_DQ       (sram_0_external_interface_DQ),                             // external_interface.export
-		.SRAM_ADDR     (sram_0_external_interface_ADDR),                           //                   .export
-		.SRAM_LB_N     (sram_0_external_interface_LB_N),                           //                   .export
-		.SRAM_UB_N     (sram_0_external_interface_UB_N),                           //                   .export
-		.SRAM_CE_N     (sram_0_external_interface_CE_N),                           //                   .export
-		.SRAM_OE_N     (sram_0_external_interface_OE_N),                           //                   .export
-		.SRAM_WE_N     (sram_0_external_interface_WE_N),                           //                   .export
+		.reset         (rst_controller_003_reset_out_reset),                       //              reset.reset
+		.SRAM_DQ       (sram_DQ),                                                  // external_interface.export
+		.SRAM_ADDR     (sram_ADDR),                                                //                   .export
+		.SRAM_LB_N     (sram_LB_N),                                                //                   .export
+		.SRAM_UB_N     (sram_UB_N),                                                //                   .export
+		.SRAM_CE_N     (sram_CE_N),                                                //                   .export
+		.SRAM_OE_N     (sram_OE_N),                                                //                   .export
+		.SRAM_WE_N     (sram_WE_N),                                                //                   .export
 		.address       (mm_interconnect_0_sram_0_avalon_sram_slave_address),       //  avalon_sram_slave.address
 		.byteenable    (mm_interconnect_0_sram_0_avalon_sram_slave_byteenable),    //                   .byteenable
 		.read          (mm_interconnect_0_sram_0_avalon_sram_slave_read),          //                   .read
@@ -222,7 +244,7 @@ module nios_system (
 
 	nios_system_sys_sdram_pll_0 sys_sdram_pll_0 (
 		.ref_clk_clk        (clk_clk),                            //      ref_clk.clk
-		.ref_reset_reset    (rst_controller_002_reset_out_reset), //    ref_reset.reset
+		.ref_reset_reset    (rst_controller_003_reset_out_reset), //    ref_reset.reset
 		.sys_clk_clk        (sys_sdram_pll_0_sys_clk_clk),        //      sys_clk.clk
 		.sdram_clk_clk      (sdram_clk_clk),                      //    sdram_clk.clk
 		.reset_source_reset (sys_sdram_pll_0_reset_source_reset)  // reset_source.reset
@@ -230,7 +252,7 @@ module nios_system (
 
 	nios_system_video_alpha_blender_0 video_alpha_blender_0 (
 		.clk                      (clk_clk),                                                            //                    clk.clk
-		.reset                    (rst_controller_002_reset_out_reset),                                 //                  reset.reset
+		.reset                    (rst_controller_003_reset_out_reset),                                 //                  reset.reset
 		.foreground_data          (video_character_buffer_with_dma_0_avalon_char_source_data),          // avalon_foreground_sink.data
 		.foreground_startofpacket (video_character_buffer_with_dma_0_avalon_char_source_startofpacket), //                       .startofpacket
 		.foreground_endofpacket   (video_character_buffer_with_dma_0_avalon_char_source_endofpacket),   //                       .endofpacket
@@ -250,7 +272,7 @@ module nios_system (
 
 	nios_system_video_character_buffer_with_dma_0 video_character_buffer_with_dma_0 (
 		.clk                  (clk_clk),                                                                                  //                       clk.clk
-		.reset                (rst_controller_002_reset_out_reset),                                                       //                     reset.reset
+		.reset                (rst_controller_003_reset_out_reset),                                                       //                     reset.reset
 		.ctrl_address         (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_address),    // avalon_char_control_slave.address
 		.ctrl_byteenable      (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable), //                          .byteenable
 		.ctrl_chipselect      (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect), //                          .chipselect
@@ -275,9 +297,9 @@ module nios_system (
 
 	nios_system_video_dual_clock_buffer_0 video_dual_clock_buffer_0 (
 		.clk_stream_in            (clk_clk),                                                         //         clock_stream_in.clk
-		.reset_stream_in          (rst_controller_002_reset_out_reset),                              //         reset_stream_in.reset
+		.reset_stream_in          (rst_controller_003_reset_out_reset),                              //         reset_stream_in.reset
 		.clk_stream_out           (video_pll_0_vga_clk_clk),                                         //        clock_stream_out.clk
-		.reset_stream_out         (rst_controller_003_reset_out_reset),                              //        reset_stream_out.reset
+		.reset_stream_out         (rst_controller_004_reset_out_reset),                              //        reset_stream_out.reset
 		.stream_in_ready          (video_alpha_blender_0_avalon_blended_source_ready),               //   avalon_dc_buffer_sink.ready
 		.stream_in_startofpacket  (video_alpha_blender_0_avalon_blended_source_startofpacket),       //                        .startofpacket
 		.stream_in_endofpacket    (video_alpha_blender_0_avalon_blended_source_endofpacket),         //                        .endofpacket
@@ -292,7 +314,7 @@ module nios_system (
 
 	nios_system_video_pixel_buffer_dma_0 video_pixel_buffer_dma_0 (
 		.clk                  (clk_clk),                                                                    //                     clk.clk
-		.reset                (rst_controller_002_reset_out_reset),                                         //                   reset.reset
+		.reset                (rst_controller_003_reset_out_reset),                                         //                   reset.reset
 		.master_readdatavalid (video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid),             // avalon_pixel_dma_master.readdatavalid
 		.master_waitrequest   (video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest),               //                        .waitrequest
 		.master_address       (video_pixel_buffer_dma_0_avalon_pixel_dma_master_address),                   //                        .address
@@ -314,7 +336,7 @@ module nios_system (
 
 	nios_system_video_pll_0 video_pll_0 (
 		.ref_clk_clk        (clk_clk),                            //      ref_clk.clk
-		.ref_reset_reset    (rst_controller_002_reset_out_reset), //    ref_reset.reset
+		.ref_reset_reset    (rst_controller_003_reset_out_reset), //    ref_reset.reset
 		.video_in_clk_clk   (),                                   // video_in_clk.clk
 		.vga_clk_clk        (video_pll_0_vga_clk_clk),            //      vga_clk.clk
 		.lcd_clk_clk        (),                                   //      lcd_clk.clk
@@ -323,7 +345,7 @@ module nios_system (
 
 	nios_system_video_rgb_resampler_0 video_rgb_resampler_0 (
 		.clk                      (clk_clk),                                                           //               clk.clk
-		.reset                    (rst_controller_002_reset_out_reset),                                //             reset.reset
+		.reset                    (rst_controller_003_reset_out_reset),                                //             reset.reset
 		.stream_in_startofpacket  (video_pixel_buffer_dma_0_avalon_pixel_source_startofpacket),        //   avalon_rgb_sink.startofpacket
 		.stream_in_endofpacket    (video_pixel_buffer_dma_0_avalon_pixel_source_endofpacket),          //                  .endofpacket
 		.stream_in_valid          (video_pixel_buffer_dma_0_avalon_pixel_source_valid),                //                  .valid
@@ -340,7 +362,7 @@ module nios_system (
 
 	nios_system_video_scaler_0 video_scaler_0 (
 		.clk                      (clk_clk),                                               //                  clk.clk
-		.reset                    (rst_controller_002_reset_out_reset),                    //                reset.reset
+		.reset                    (rst_controller_003_reset_out_reset),                    //                reset.reset
 		.stream_in_startofpacket  (video_rgb_resampler_0_avalon_rgb_source_startofpacket), //   avalon_scaler_sink.startofpacket
 		.stream_in_endofpacket    (video_rgb_resampler_0_avalon_rgb_source_endofpacket),   //                     .endofpacket
 		.stream_in_valid          (video_rgb_resampler_0_avalon_rgb_source_valid),         //                     .valid
@@ -356,29 +378,30 @@ module nios_system (
 
 	nios_system_video_vga_controller_0 video_vga_controller_0 (
 		.clk           (video_pll_0_vga_clk_clk),                                         //                clk.clk
-		.reset         (rst_controller_003_reset_out_reset),                              //              reset.reset
+		.reset         (rst_controller_004_reset_out_reset),                              //              reset.reset
 		.data          (video_dual_clock_buffer_0_avalon_dc_buffer_source_data),          //    avalon_vga_sink.data
 		.startofpacket (video_dual_clock_buffer_0_avalon_dc_buffer_source_startofpacket), //                   .startofpacket
 		.endofpacket   (video_dual_clock_buffer_0_avalon_dc_buffer_source_endofpacket),   //                   .endofpacket
 		.valid         (video_dual_clock_buffer_0_avalon_dc_buffer_source_valid),         //                   .valid
 		.ready         (video_dual_clock_buffer_0_avalon_dc_buffer_source_ready),         //                   .ready
-		.VGA_CLK       (video_vga_controller_0_external_interface_CLK),                   // external_interface.export
-		.VGA_HS        (video_vga_controller_0_external_interface_HS),                    //                   .export
-		.VGA_VS        (video_vga_controller_0_external_interface_VS),                    //                   .export
-		.VGA_BLANK     (video_vga_controller_0_external_interface_BLANK),                 //                   .export
-		.VGA_SYNC      (video_vga_controller_0_external_interface_SYNC),                  //                   .export
-		.VGA_R         (video_vga_controller_0_external_interface_R),                     //                   .export
-		.VGA_G         (video_vga_controller_0_external_interface_G),                     //                   .export
-		.VGA_B         (video_vga_controller_0_external_interface_B)                      //                   .export
+		.VGA_CLK       (vga_CLK),                                                         // external_interface.export
+		.VGA_HS        (vga_HS),                                                          //                   .export
+		.VGA_VS        (vga_VS),                                                          //                   .export
+		.VGA_BLANK     (vga_BLANK),                                                       //                   .export
+		.VGA_SYNC      (vga_SYNC),                                                        //                   .export
+		.VGA_R         (vga_R),                                                           //                   .export
+		.VGA_G         (vga_G),                                                           //                   .export
+		.VGA_B         (vga_B)                                                            //                   .export
 	);
 
 	nios_system_mm_interconnect_0 mm_interconnect_0 (
 		.clk_0_clk_clk                                                          (clk_clk),                                                                                  //                                                   clk_0_clk.clk
 		.sys_sdram_pll_0_sdram_clk_clk                                          (sdram_clk_clk),                                                                            //                                   sys_sdram_pll_0_sdram_clk.clk
 		.sys_sdram_pll_0_sys_clk_clk                                            (sys_sdram_pll_0_sys_clk_clk),                                                              //                                     sys_sdram_pll_0_sys_clk.clk
-		.nios2_gen2_0_reset_reset_bridge_in_reset_reset                         (rst_controller_reset_out_reset),                                                           //                    nios2_gen2_0_reset_reset_bridge_in_reset.reset
-		.sdram_controller_0_reset_reset_bridge_in_reset_reset                   (rst_controller_001_reset_out_reset),                                                       //              sdram_controller_0_reset_reset_bridge_in_reset.reset
-		.video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset             (rst_controller_002_reset_out_reset),                                                       //        video_pixel_buffer_dma_0_reset_reset_bridge_in_reset.reset
+		.jtag_uart_0_reset_reset_bridge_in_reset_reset                          (rst_controller_reset_out_reset),                                                           //                     jtag_uart_0_reset_reset_bridge_in_reset.reset
+		.nios2_gen2_0_reset_reset_bridge_in_reset_reset                         (rst_controller_001_reset_out_reset),                                                       //                    nios2_gen2_0_reset_reset_bridge_in_reset.reset
+		.sdram_controller_0_reset_reset_bridge_in_reset_reset                   (rst_controller_002_reset_out_reset),                                                       //              sdram_controller_0_reset_reset_bridge_in_reset.reset
+		.video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset             (rst_controller_003_reset_out_reset),                                                       //        video_pixel_buffer_dma_0_reset_reset_bridge_in_reset.reset
 		.nios2_gen2_0_data_master_address                                       (nios2_gen2_0_data_master_address),                                                         //                                    nios2_gen2_0_data_master.address
 		.nios2_gen2_0_data_master_waitrequest                                   (nios2_gen2_0_data_master_waitrequest),                                                     //                                                            .waitrequest
 		.nios2_gen2_0_data_master_byteenable                                    (nios2_gen2_0_data_master_byteenable),                                                      //                                                            .byteenable
@@ -399,6 +422,13 @@ module nios_system (
 		.video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata              (video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata),                                //                                                            .readdata
 		.video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid         (video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid),                           //                                                            .readdatavalid
 		.video_pixel_buffer_dma_0_avalon_pixel_dma_master_lock                  (video_pixel_buffer_dma_0_avalon_pixel_dma_master_lock),                                    //                                                            .lock
+		.jtag_uart_0_avalon_jtag_slave_address                                  (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),                                  //                               jtag_uart_0_avalon_jtag_slave.address
+		.jtag_uart_0_avalon_jtag_slave_write                                    (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),                                    //                                                            .write
+		.jtag_uart_0_avalon_jtag_slave_read                                     (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),                                     //                                                            .read
+		.jtag_uart_0_avalon_jtag_slave_readdata                                 (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_readdata),                                 //                                                            .readdata
+		.jtag_uart_0_avalon_jtag_slave_writedata                                (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),                                //                                                            .writedata
+		.jtag_uart_0_avalon_jtag_slave_waitrequest                              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest),                              //                                                            .waitrequest
+		.jtag_uart_0_avalon_jtag_slave_chipselect                               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),                               //                                                            .chipselect
 		.nios2_gen2_0_debug_mem_slave_address                                   (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_address),                                   //                                nios2_gen2_0_debug_mem_slave.address
 		.nios2_gen2_0_debug_mem_slave_write                                     (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_write),                                     //                                                            .write
 		.nios2_gen2_0_debug_mem_slave_read                                      (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_read),                                      //                                                            .read
@@ -449,9 +479,10 @@ module nios_system (
 	);
 
 	nios_system_irq_mapper irq_mapper (
-		.clk        (sys_sdram_pll_0_sys_clk_clk),    //       clk.clk
-		.reset      (rst_controller_reset_out_reset), // clk_reset.reset
-		.sender_irq (nios2_gen2_0_irq_irq)            //    sender.irq
+		.clk           (sys_sdram_pll_0_sys_clk_clk),        //       clk.clk
+		.reset         (rst_controller_001_reset_out_reset), // clk_reset.reset
+		.receiver0_irq (irq_mapper_receiver0_irq),           // receiver0.irq
+		.sender_irq    (nios2_gen2_0_irq_irq)                //    sender.irq
 	);
 
 	nios_system_avalon_st_adapter #(
@@ -473,7 +504,7 @@ module nios_system (
 		.outReadyLatency (0)
 	) avalon_st_adapter (
 		.in_clk_0_clk        (clk_clk),                                           // in_clk_0.clk
-		.in_rst_0_reset      (rst_controller_002_reset_out_reset),                // in_rst_0.reset
+		.in_rst_0_reset      (rst_controller_003_reset_out_reset),                // in_rst_0.reset
 		.in_0_data           (video_scaler_0_avalon_scaler_source_data),          //     in_0.data
 		.in_0_valid          (video_scaler_0_avalon_scaler_source_valid),         //         .valid
 		.in_0_ready          (video_scaler_0_avalon_scaler_source_ready),         //         .ready
@@ -485,69 +516,6 @@ module nios_system (
 		.out_0_ready         (avalon_st_adapter_out_0_ready),                     //         .ready
 		.out_0_startofpacket (avalon_st_adapter_out_0_startofpacket),             //         .startofpacket
 		.out_0_endofpacket   (avalon_st_adapter_out_0_endofpacket)                //         .endofpacket
-	);
-
-	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
-		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
-		.SYNC_DEPTH                (2),
-		.RESET_REQUEST_PRESENT     (1),
-		.RESET_REQ_WAIT_TIME       (1),
-		.MIN_RST_ASSERTION_TIME    (3),
-		.RESET_REQ_EARLY_DSRT_TIME (1),
-		.USE_RESET_REQUEST_IN0     (0),
-		.USE_RESET_REQUEST_IN1     (0),
-		.USE_RESET_REQUEST_IN2     (0),
-		.USE_RESET_REQUEST_IN3     (0),
-		.USE_RESET_REQUEST_IN4     (0),
-		.USE_RESET_REQUEST_IN5     (0),
-		.USE_RESET_REQUEST_IN6     (0),
-		.USE_RESET_REQUEST_IN7     (0),
-		.USE_RESET_REQUEST_IN8     (0),
-		.USE_RESET_REQUEST_IN9     (0),
-		.USE_RESET_REQUEST_IN10    (0),
-		.USE_RESET_REQUEST_IN11    (0),
-		.USE_RESET_REQUEST_IN12    (0),
-		.USE_RESET_REQUEST_IN13    (0),
-		.USE_RESET_REQUEST_IN14    (0),
-		.USE_RESET_REQUEST_IN15    (0),
-		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller (
-		.reset_in0      (sys_sdram_pll_0_reset_source_reset), // reset_in0.reset
-		.clk            (sys_sdram_pll_0_sys_clk_clk),        //       clk.clk
-		.reset_out      (rst_controller_reset_out_reset),     // reset_out.reset
-		.reset_req      (rst_controller_reset_out_reset_req), //          .reset_req
-		.reset_req_in0  (1'b0),                               // (terminated)
-		.reset_in1      (1'b0),                               // (terminated)
-		.reset_req_in1  (1'b0),                               // (terminated)
-		.reset_in2      (1'b0),                               // (terminated)
-		.reset_req_in2  (1'b0),                               // (terminated)
-		.reset_in3      (1'b0),                               // (terminated)
-		.reset_req_in3  (1'b0),                               // (terminated)
-		.reset_in4      (1'b0),                               // (terminated)
-		.reset_req_in4  (1'b0),                               // (terminated)
-		.reset_in5      (1'b0),                               // (terminated)
-		.reset_req_in5  (1'b0),                               // (terminated)
-		.reset_in6      (1'b0),                               // (terminated)
-		.reset_req_in6  (1'b0),                               // (terminated)
-		.reset_in7      (1'b0),                               // (terminated)
-		.reset_req_in7  (1'b0),                               // (terminated)
-		.reset_in8      (1'b0),                               // (terminated)
-		.reset_req_in8  (1'b0),                               // (terminated)
-		.reset_in9      (1'b0),                               // (terminated)
-		.reset_req_in9  (1'b0),                               // (terminated)
-		.reset_in10     (1'b0),                               // (terminated)
-		.reset_req_in10 (1'b0),                               // (terminated)
-		.reset_in11     (1'b0),                               // (terminated)
-		.reset_req_in11 (1'b0),                               // (terminated)
-		.reset_in12     (1'b0),                               // (terminated)
-		.reset_req_in12 (1'b0),                               // (terminated)
-		.reset_in13     (1'b0),                               // (terminated)
-		.reset_req_in13 (1'b0),                               // (terminated)
-		.reset_in14     (1'b0),                               // (terminated)
-		.reset_req_in14 (1'b0),                               // (terminated)
-		.reset_in15     (1'b0),                               // (terminated)
-		.reset_req_in15 (1'b0)                                // (terminated)
 	);
 
 	altera_reset_controller #(
@@ -575,42 +543,105 @@ module nios_system (
 		.USE_RESET_REQUEST_IN14    (0),
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller (
+		.reset_in0      (~reset_reset_n),                 // reset_in0.reset
+		.clk            (sys_sdram_pll_0_sys_clk_clk),    //       clk.clk
+		.reset_out      (rst_controller_reset_out_reset), // reset_out.reset
+		.reset_req      (),                               // (terminated)
+		.reset_req_in0  (1'b0),                           // (terminated)
+		.reset_in1      (1'b0),                           // (terminated)
+		.reset_req_in1  (1'b0),                           // (terminated)
+		.reset_in2      (1'b0),                           // (terminated)
+		.reset_req_in2  (1'b0),                           // (terminated)
+		.reset_in3      (1'b0),                           // (terminated)
+		.reset_req_in3  (1'b0),                           // (terminated)
+		.reset_in4      (1'b0),                           // (terminated)
+		.reset_req_in4  (1'b0),                           // (terminated)
+		.reset_in5      (1'b0),                           // (terminated)
+		.reset_req_in5  (1'b0),                           // (terminated)
+		.reset_in6      (1'b0),                           // (terminated)
+		.reset_req_in6  (1'b0),                           // (terminated)
+		.reset_in7      (1'b0),                           // (terminated)
+		.reset_req_in7  (1'b0),                           // (terminated)
+		.reset_in8      (1'b0),                           // (terminated)
+		.reset_req_in8  (1'b0),                           // (terminated)
+		.reset_in9      (1'b0),                           // (terminated)
+		.reset_req_in9  (1'b0),                           // (terminated)
+		.reset_in10     (1'b0),                           // (terminated)
+		.reset_req_in10 (1'b0),                           // (terminated)
+		.reset_in11     (1'b0),                           // (terminated)
+		.reset_req_in11 (1'b0),                           // (terminated)
+		.reset_in12     (1'b0),                           // (terminated)
+		.reset_req_in12 (1'b0),                           // (terminated)
+		.reset_in13     (1'b0),                           // (terminated)
+		.reset_req_in13 (1'b0),                           // (terminated)
+		.reset_in14     (1'b0),                           // (terminated)
+		.reset_req_in14 (1'b0),                           // (terminated)
+		.reset_in15     (1'b0),                           // (terminated)
+		.reset_req_in15 (1'b0)                            // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (1),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
-		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
-		.clk            (sdram_clk_clk),                      //       clk.clk
-		.reset_out      (rst_controller_001_reset_out_reset), // reset_out.reset
-		.reset_req      (),                                   // (terminated)
-		.reset_req_in0  (1'b0),                               // (terminated)
-		.reset_in1      (1'b0),                               // (terminated)
-		.reset_req_in1  (1'b0),                               // (terminated)
-		.reset_in2      (1'b0),                               // (terminated)
-		.reset_req_in2  (1'b0),                               // (terminated)
-		.reset_in3      (1'b0),                               // (terminated)
-		.reset_req_in3  (1'b0),                               // (terminated)
-		.reset_in4      (1'b0),                               // (terminated)
-		.reset_req_in4  (1'b0),                               // (terminated)
-		.reset_in5      (1'b0),                               // (terminated)
-		.reset_req_in5  (1'b0),                               // (terminated)
-		.reset_in6      (1'b0),                               // (terminated)
-		.reset_req_in6  (1'b0),                               // (terminated)
-		.reset_in7      (1'b0),                               // (terminated)
-		.reset_req_in7  (1'b0),                               // (terminated)
-		.reset_in8      (1'b0),                               // (terminated)
-		.reset_req_in8  (1'b0),                               // (terminated)
-		.reset_in9      (1'b0),                               // (terminated)
-		.reset_req_in9  (1'b0),                               // (terminated)
-		.reset_in10     (1'b0),                               // (terminated)
-		.reset_req_in10 (1'b0),                               // (terminated)
-		.reset_in11     (1'b0),                               // (terminated)
-		.reset_req_in11 (1'b0),                               // (terminated)
-		.reset_in12     (1'b0),                               // (terminated)
-		.reset_req_in12 (1'b0),                               // (terminated)
-		.reset_in13     (1'b0),                               // (terminated)
-		.reset_req_in13 (1'b0),                               // (terminated)
-		.reset_in14     (1'b0),                               // (terminated)
-		.reset_req_in14 (1'b0),                               // (terminated)
-		.reset_in15     (1'b0),                               // (terminated)
-		.reset_req_in15 (1'b0)                                // (terminated)
+		.reset_in0      (sys_sdram_pll_0_reset_source_reset),     // reset_in0.reset
+		.clk            (sys_sdram_pll_0_sys_clk_clk),            //       clk.clk
+		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset
+		.reset_req      (rst_controller_001_reset_out_reset_req), //          .reset_req
+		.reset_req_in0  (1'b0),                                   // (terminated)
+		.reset_in1      (1'b0),                                   // (terminated)
+		.reset_req_in1  (1'b0),                                   // (terminated)
+		.reset_in2      (1'b0),                                   // (terminated)
+		.reset_req_in2  (1'b0),                                   // (terminated)
+		.reset_in3      (1'b0),                                   // (terminated)
+		.reset_req_in3  (1'b0),                                   // (terminated)
+		.reset_in4      (1'b0),                                   // (terminated)
+		.reset_req_in4  (1'b0),                                   // (terminated)
+		.reset_in5      (1'b0),                                   // (terminated)
+		.reset_req_in5  (1'b0),                                   // (terminated)
+		.reset_in6      (1'b0),                                   // (terminated)
+		.reset_req_in6  (1'b0),                                   // (terminated)
+		.reset_in7      (1'b0),                                   // (terminated)
+		.reset_req_in7  (1'b0),                                   // (terminated)
+		.reset_in8      (1'b0),                                   // (terminated)
+		.reset_req_in8  (1'b0),                                   // (terminated)
+		.reset_in9      (1'b0),                                   // (terminated)
+		.reset_req_in9  (1'b0),                                   // (terminated)
+		.reset_in10     (1'b0),                                   // (terminated)
+		.reset_req_in10 (1'b0),                                   // (terminated)
+		.reset_in11     (1'b0),                                   // (terminated)
+		.reset_req_in11 (1'b0),                                   // (terminated)
+		.reset_in12     (1'b0),                                   // (terminated)
+		.reset_req_in12 (1'b0),                                   // (terminated)
+		.reset_in13     (1'b0),                                   // (terminated)
+		.reset_req_in13 (1'b0),                                   // (terminated)
+		.reset_in14     (1'b0),                                   // (terminated)
+		.reset_req_in14 (1'b0),                                   // (terminated)
+		.reset_in15     (1'b0),                                   // (terminated)
+		.reset_req_in15 (1'b0)                                    // (terminated)
 	);
 
 	altera_reset_controller #(
@@ -640,7 +671,7 @@ module nios_system (
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_002 (
 		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
-		.clk            (clk_clk),                            //       clk.clk
+		.clk            (sdram_clk_clk),                      //       clk.clk
 		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
@@ -702,9 +733,72 @@ module nios_system (
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_003 (
+		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
+		.clk            (clk_clk),                            //       clk.clk
+		.reset_out      (rst_controller_003_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_004 (
 		.reset_in0      (video_pll_0_reset_source_reset),     // reset_in0.reset
 		.clk            (video_pll_0_vga_clk_clk),            //       clk.clk
-		.reset_out      (rst_controller_003_reset_out_reset), // reset_out.reset
+		.reset_out      (rst_controller_004_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
 		.reset_in1      (1'b0),                               // (terminated)
