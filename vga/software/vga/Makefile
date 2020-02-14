@@ -143,6 +143,7 @@ ELF := vga.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS += hello_world.c
+C_SRCS += myfile.c
 CXX_SRCS :=
 ASM_SRCS :=
 

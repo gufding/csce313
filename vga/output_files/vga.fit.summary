@@ -1,14 +1,14 @@
-Fitter Status : Successful - Mon Feb 10 22:05:00 2020
+Fitter Status : Successful - Wed Feb 12 17:00:54 2020
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 Revision Name : vga
 Top-level Entity Name : vga
 Family : Cyclone IV E
 Device : EP4CE115F29C7
 Timing Models : Final
-Total logic elements : 6,714 / 114,480 ( 6 % )
-    Total combinational functions : 5,044 / 114,480 ( 4 % )
-    Dedicated logic registers : 4,828 / 114,480 ( 4 % )
-Total registers : 4947
+Total logic elements : 6,701 / 114,480 ( 6 % )
+    Total combinational functions : 5,035 / 114,480 ( 4 % )
+    Dedicated logic registers : 4,826 / 114,480 ( 4 % )
+Total registers : 4945
 Total pins : 132 / 529 ( 25 % )
 Total virtual pins : 0
 Total memory bits : 150,400 / 3,981,312 ( 4 % )

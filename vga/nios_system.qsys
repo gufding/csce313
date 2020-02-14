@@ -33,6 +33,14 @@
          type = "int";
       }
    }
+   element jtag_uart_0.avalon_jtag_slave
+   {
+      datum baseAddress
+      {
+         value = "270544912";
+         type = "String";
+      }
+   }
    element nios2_gen2_0
    {
       datum _sortIndex
@@ -75,6 +83,11 @@
    }
    element sram_0.avalon_sram_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "268435456";
@@ -117,7 +130,7 @@
    {
       datum baseAddress
       {
-         value = "270544912";
+         value = "270544920";
          type = "String";
       }
    }
@@ -165,7 +178,7 @@
    {
       datum baseAddress
       {
-         value = "270544920";
+         value = "270544928";
          type = "String";
       }
    }
@@ -279,7 +292,7 @@
   <parameter name="dataAddrWidth" value="29" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='jtag_uart_0.avalon_jtag_slave' start='0x0' end='0x8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='sdram_controller_0.s1' start='0x8000000' end='0x10000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='sram_0.avalon_sram_slave' start='0x10000000' end='0x10200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x10200000' end='0x10202000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x10202800' end='0x10203000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x10203000' end='0x10203010' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x10203010' end='0x10203018' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /><slave name='video_rgb_resampler_0.avalon_rgb_slave' start='0x10203018' end='0x1020301C' type='altera_up_avalon_video_rgb_resampler.avalon_rgb_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram_controller_0.s1' start='0x8000000' end='0x10000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='sram_0.avalon_sram_slave' start='0x10000000' end='0x10200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x10200000' end='0x10202000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x10202800' end='0x10203000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x10203000' end='0x10203010' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x10203010' end='0x10203018' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x10203018' end='0x10203020' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /><slave name='video_rgb_resampler_0.avalon_rgb_slave' start='0x10203020' end='0x10203024' type='altera_up_avalon_video_rgb_resampler.avalon_rgb_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -470,7 +483,7 @@
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
   <parameter name="board" value="DE2-115" />
-  <parameter name="pixel_buffer" value="false" />
+  <parameter name="pixel_buffer" value="true" />
  </module>
  <module
    name="sys_sdram_pll_0"
@@ -528,11 +541,11 @@
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
   <parameter name="addr_mode" value="X-Y" />
-  <parameter name="back_start_address" value="0" />
+  <parameter name="back_start_address" value="268435456" />
   <parameter name="color_space" value="24-bit RGB" />
-  <parameter name="image_height" value="480" />
-  <parameter name="image_width" value="640" />
-  <parameter name="start_address" value="0" />
+  <parameter name="image_height" value="240" />
+  <parameter name="image_width" value="320" />
+  <parameter name="start_address" value="268435456" />
  </module>
  <module
    name="video_pll_0"
@@ -612,7 +625,7 @@
    start="nios2_gen2_0.data_master"
    end="video_character_buffer_with_dma_0.avalon_char_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x10203010" />
+  <parameter name="baseAddress" value="0x10203018" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -630,7 +643,7 @@
    start="nios2_gen2_0.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x10203010" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -639,7 +652,7 @@
    start="nios2_gen2_0.data_master"
    end="video_rgb_resampler_0.avalon_rgb_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x10203018" />
+  <parameter name="baseAddress" value="0x10203020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -850,6 +863,11 @@
    version="18.1"
    start="clk_0.clk_reset"
    end="jtag_uart_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="nios2_gen2_0.reset" />
  <connection
    kind="reset"
    version="18.1"

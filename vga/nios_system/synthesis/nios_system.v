@@ -150,7 +150,7 @@ module nios_system (
 	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [jtag_uart_0:rst_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n]
 	wire         rst_controller_001_reset_out_reset_req;                                                   // rst_controller_001:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
-	wire         sys_sdram_pll_0_reset_source_reset;                                                       // sys_sdram_pll_0:reset_source_reset -> rst_controller_001:reset_in0
+	wire         sys_sdram_pll_0_reset_source_reset;                                                       // sys_sdram_pll_0:reset_source_reset -> rst_controller_001:reset_in1
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_controller_0_reset_reset_bridge_in_reset_reset, sdram_controller_0:reset_n]
 	wire         rst_controller_003_reset_out_reset;                                                       // rst_controller_003:reset_out -> [avalon_st_adapter:in_rst_0_reset, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, sram_0:reset, sys_sdram_pll_0:ref_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_pll_0:ref_reset_reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_004_reset_out_reset;                                                       // rst_controller_004:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
@@ -582,7 +582,7 @@ module nios_system (
 	);
 
 	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
+		.NUM_RESET_INPUTS          (2),
 		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
 		.SYNC_DEPTH                (2),
 		.RESET_REQUEST_PRESENT     (1),
@@ -607,12 +607,12 @@ module nios_system (
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
-		.reset_in0      (sys_sdram_pll_0_reset_source_reset),     // reset_in0.reset
+		.reset_in0      (~reset_reset_n),                         // reset_in0.reset
+		.reset_in1      (sys_sdram_pll_0_reset_source_reset),     // reset_in1.reset
 		.clk            (sys_sdram_pll_0_sys_clk_clk),            //       clk.clk
 		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset
 		.reset_req      (rst_controller_001_reset_out_reset_req), //          .reset_req
 		.reset_req_in0  (1'b0),                                   // (terminated)
-		.reset_in1      (1'b0),                                   // (terminated)
 		.reset_req_in1  (1'b0),                                   // (terminated)
 		.reset_in2      (1'b0),                                   // (terminated)
 		.reset_req_in2  (1'b0),                                   // (terminated)

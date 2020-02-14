@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 10, 2020 10:06:27 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1581390387602</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 12, 2020 5:01:43 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1581544903987</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/acct/mhensler/csce313/vga/software/vga_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../nios_system.sopcinfo</SopcDesignFile>
@@ -899,12 +899,6 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
-                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x00000000 - 0x00000007</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes>printable</attributes>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>sdram_controller_0</slaveDescriptor>
                 <addressRange>0x08000000 - 0x0FFFFFFF</addressRange>
                 <addressSpan>134217728</addressSpan>
@@ -929,14 +923,20 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
+                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
                 <addressRange>0x10203010 - 0x10203017</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
+                <addressRange>0x10203018 - 0x1020301F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_rgb_resampler_0</slaveDescriptor>
-                <addressRange>0x10203018 - 0x1020301B</addressRange>
+                <addressRange>0x10203020 - 0x10203023</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
