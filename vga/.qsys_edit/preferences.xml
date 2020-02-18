@@ -5,9 +5,10 @@
   <columns>
    <connections preferredWidth="399" />
    <irq preferredWidth="34" />
-   <name preferredWidth="213" />
+   <name preferredWidth="309" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
+ <library
+   expandedCategories="Library/DSP/Primitive DSP,Library/Processors and Peripherals,Library/DSP,Library/Processors and Peripherals/Co-Processors,Project,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Library" />
  <window width="1920" height="1053" x="0" y="27" />
 </preferences>

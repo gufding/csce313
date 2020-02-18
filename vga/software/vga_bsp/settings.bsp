@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 12, 2020 5:01:43 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1581544903987</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 17, 2020 9:41:32 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1581993692199</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/acct/mhensler/csce313/vga/software/vga_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../nios_system.sopcinfo</SopcDesignFile>
@@ -898,6 +898,12 @@
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
+        <MemoryMap>
+                <slaveDescriptor>timer_0</slaveDescriptor>
+                <addressRange>0x00000000 - 0x0000001F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes>timer</attributes>
+        </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sdram_controller_0</slaveDescriptor>
                 <addressRange>0x08000000 - 0x0FFFFFFF</addressRange>
