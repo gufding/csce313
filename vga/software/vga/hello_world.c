@@ -11,15 +11,16 @@
 
 #define PI 3.141592
 
-void measuringFrameRate() {
+/*void measuringFrameRate() {
   alt_u32 ticks_per_second = alt_ticks_per_second();
   alt_u32 current_tick = 0, prev_tick = alt_nticks();
-}
-void displayFrameRate(alt_up_char_buffer_dev *char_buf) {
+}*/
+
+void printOnScreen(alt_up_char_buffer_dev *char_buf, char *message) {
   char_buf = alt_up_char_buffer_open_dev("/dev/video_character_buffer_with_dma_0");
   if (!char_buf) printf("error opening character buffer\n");
   alt_up_char_buffer_clear(char_buf);
-  alt_up_char_buffer_string(char_buf, "Video Works", 35, 50);
+  alt_up_char_buffer_string(char_buf, message, 35, 50);
 }
 
 void displayImage (alt_u8 *image_array, int screen_width, int screen_height, float angle) {
@@ -36,35 +37,39 @@ void displayImage (alt_u8 *image_array, int screen_width, int screen_height, flo
       r = ((j-160)*sin(angle))+((i-120)*cos(angle));
       c = ((j-160)*cos(angle))+((i-120)*(-sin(angle)));
       // Get the coordinates back to top left of screen
-      r += 120;
-      c += 160;
+      r += 120;  // Width of screen divided by 2 to get back to original coordinate
+      c += 160;  // Heigh of screen divided by 2 to get back to original coordinate
       r = roundf(r);
       c = roundf(c);
    
       // Draw the image
       alt_up_pixel_buffer_dma_draw(pix_buf,
-       (myimage[(i*screen_height+j)*3+0] << 16) +
-       (myimage[(i*screen_height+j)*3+1] << 8) + 
-       (myimage[(i*screen_height+j)*3+2]), (int)c, (int)r);
+       (myimage[(i*screen_width+j)*3+0] << 16) +
+       (myimage[(i*screen_width+j)*3+1] << 8) + 
+       (myimage[(i*screen_width+j)*3+2]), (int)c, (int)r);
     }
   }  
 }
 
 int main() {  
-  myimage[230401];
+  myimage[230401];  // Picture file in an array
   alt_up_char_buffer_dev *char_buf;
-  float angles[12] = {0, PI/6, PI/3, PI/2, (2*PI)/3, (5*PI)/6, PI,
+  
+  // Angles used for rotating screen. In radians
+  float angles[13] = {0, PI/6, PI/3, PI/2, (2*PI)/3, (5*PI)/6, PI,
                      (7*PI)/6, (4*PI)/3, (3*PI)/2, (5*PI)/3, (11*PI)/6, 2*PI};
   while(1) {
+    // Clockwise rotation
     for (int i = 0; i < 13; i++) {
-      displayImage(myimage, 480, 320, angles[i]);
+      printOnScreen(char_buf, "Clockwise");
+      displayImage(myimage, 320, 240, angles[i]);
     }
-    for (int i = 13; i != 0; i--) {
-      displayImage(myimage, 480, 320, angles[i]);
+    // Couner-clockwise rotation
+    for (int i = 11; i > 0; i--) {
+      printOnScreen(char_buf, "Counter-clockwise");
+      displayImage(myimage, 320, 240, angles[i]);
     }
-  }
-  displayFrameRate(char_buf);
-    
+  }    
   return 0;
 }
 
