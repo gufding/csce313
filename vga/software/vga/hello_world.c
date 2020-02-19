@@ -24,10 +24,11 @@ void printOnScreen(alt_up_char_buffer_dev *char_buf, char *message) {
 }
 
 void displayImage (alt_u8 *image_array, int screen_width, int screen_height, float angle) {
+  
   alt_up_pixel_buffer_dma_dev *pix_buf;
   pix_buf = alt_up_pixel_buffer_dma_open_dev("/dev/video_pixel_buffer_dma_0");
   alt_up_pixel_buffer_dma_clear_screen(pix_buf, 0);
-  
+
   // Display the image at the angle given
   alt_u16 r;
   alt_u16 c;
@@ -41,20 +42,20 @@ void displayImage (alt_u8 *image_array, int screen_width, int screen_height, flo
       c += 160;  // Heigh of screen divided by 2 to get back to original coordinate
       r = roundf(r);
       c = roundf(c);
-   
+
       // Draw the image
       alt_up_pixel_buffer_dma_draw(pix_buf,
        (myimage[(i*screen_width+j)*3+0] << 16) +
-       (myimage[(i*screen_width+j)*3+1] << 8) + 
+       (myimage[(i*screen_width+j)*3+1] << 8) +
        (myimage[(i*screen_width+j)*3+2]), (int)c, (int)r);
     }
-  }  
+  }
 }
 
-int main() {  
+int main() {
   myimage[230401];  // Picture file in an array
   alt_up_char_buffer_dev *char_buf;
-  
+
   // Angles used for rotating screen. In radians
   float angles[13] = {0, PI/6, PI/3, PI/2, (2*PI)/3, (5*PI)/6, PI,
                      (7*PI)/6, (4*PI)/3, (3*PI)/2, (5*PI)/3, (11*PI)/6, 2*PI};
@@ -69,30 +70,6 @@ int main() {
       printOnScreen(char_buf, "Counter-clockwise");
       displayImage(myimage, 320, 240, angles[i]);
     }
-  }    
+  }
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
