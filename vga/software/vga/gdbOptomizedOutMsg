@@ -1,0 +1,59 @@
+ler@cocsce-l3d22-07:~/csce313/vga/software/vga$ nios2-elf-gdb vga.elf 
+GNU gdb (GDB) 7.10.50.20150827-cvs
+Copyright (C) 2015 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "--host=x86_64-pc-linux-gnu --target=nios2-elf".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.altera.com/mysupport>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from vga.elf...done.
+(gdb) target remote localhost:8888
+Remote debugging using localhost:8888
+displayImage (angle=<optimized out>, screen_height=240, screen_width=320, image_array=<optimized out>)
+    at hello_world.c:64
+64	}
+(gdb) load
+Loading section .entry, size 0x20 lma 0x8000000
+Loading section .exceptions, size 0x224 lma 0x8000020
+Loading section .text, size 0x179d8 lma 0x8000244
+Loading section .rodata, size 0x38a98 lma 0x8017c1c
+Loading section .rwdata, size 0x1cd4 lma 0x8052388
+Start address 0x8000244, load size 336776
+Transfer rate: 144 KB/sec, 398 bytes/write.
+(gdb) b hello
+Function "hello" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) b hello_world.c:63
+Breakpoint 1 at 0x80004d0: hello_world.c:63. (2 locations)
+(gdb) c
+Continuing.
+
+Breakpoint 1, displayImage (angle=<optimized out>, screen_height=240, screen_width=320, 
+    image_array=<optimized out>) at hello_world.c:63
+63	  printf( "Address: %0x\n", PERFORMANCE_COUNTER_0_BASE );
+(gdb) p cycles 
+$1 = 0
+(gdb) b hello_world.c:51
+Breakpoint 2 at 0x800042c: hello_world.c:51. (2 locations)
+(gdb) c                 
+Continuing.
+
+Breakpoint 2, displayImage (angle=<optimized out>, screen_height=240, screen_width=320, 
+    image_array=<optimized out>) at hello_world.c:51
+51	      cycles = perf_get_total_time((void*)PERFORMANCE_COUNTER_0_BASE);
+(gdb) p cycles 
+$2 = <optimized out>
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [Remote target] will be killed.
+
+Quit anyway? (y or n) y
+

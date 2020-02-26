@@ -3,12 +3,13 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="399" />
-   <irq preferredWidth="34" />
+   <connections preferredWidth="767" />
+   <irq preferredWidth="47" />
    <name preferredWidth="309" />
+   <inputclock preferredWidth="206" />
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/DSP/Primitive DSP,Library/Processors and Peripherals,Library/DSP,Library/Processors and Peripherals/Co-Processors,Project,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Library" />
+   expandedCategories="Project,Library,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Library/Basic Functions,Library/Basic Functions/Simulation; Debug and Verification" />
  <window width="1920" height="1053" x="0" y="27" />
 </preferences>
